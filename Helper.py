@@ -35,10 +35,14 @@ def login(driver):
         return {status: False, message:error_message.text}
     except:
         return driver
-def getStudentDetailsAndAttendence(driver, wait):
+def getStudentDetailsAndAttendance(driver, wait):
     driver.get("https://ums.paruluniversity.ac.in/StudentPanel/StudentDashboard.aspx")
 
-    student_name_span = wait.until(EC.visibility_of_element_located((By.ID, "ctl00_cphPageContent_ucStudentInfoCompact_lblStudentLCName")))
+    try:
+     student_name_span = wait.until(EC.visibility_of_element_located((By.ID, "ctl00_cphPageContent_ucStudentInfoCompact_lblStudentLCName")))
+    except:
+     print("Something went wrong")
+     return;
 
     student_enroll_span = wait.until(EC.visibility_of_element_located((By.ID, "ctl00_cphPageContent_ucStudentInfoCompact_lblEnrollmentNo")))
     student_name = student_name_span.text

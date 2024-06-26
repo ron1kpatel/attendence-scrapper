@@ -4,10 +4,9 @@ from email.mime.multipart import MIMEMultipart
 import logging
 
 # Enable debugging
-logging.basicConfig(level=logging.DEBUG)
 
 # Email Configuration
-sender_email = "rp240267@gmail.com"
+sender_email = "rp240267@gmail.com" # Enter your email
 sender_password = "emim wnkp kdet cnwq"  # Replace with the generated App Password
 
 subject = "Daily Attendance Report"
@@ -16,9 +15,8 @@ def sendMail(std):
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = std["email"]
-
     message["Subject"] = subject
-
+    print(std['email'])
     body = f"""
         Hello, {std['name']}.
 
@@ -48,6 +46,3 @@ std = {
         "absent_slots": 2
     }
 }
-
-# Send email
-sendMail(std)
